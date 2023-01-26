@@ -41,6 +41,30 @@ namespace Collection.UnitTests
             coll.Add("Emo");
             Assert.AreEqual(coll.ToString(), "[Kami, Emi, Emo]");
         }
+        [Test]
+        public void Test_Collection_GetByIndex()
+        {
+            var coll = new Collection<int>(5, 6, 7);
+            var item = coll[1];
+
+            Assert.That(item.ToString(), Is.EqualTo("6"));
+        }
+        [Test]
+        public void Test_Collection_SetByIndex()
+        {
+            var coll = new Collection<int>(5, 6, 7);
+            coll[1] = 8;
+
+            Assert.That(coll.ToString(), Is.EqualTo("[5, 8, 7]"));
+        }
+        [Test]
+        public void Test_GetByInvalidIndex()
+        {
+            var coll = new Collection<string>("Kami", "Emi");
+            Assert.That(() => { var item = coll[2]; }, Throws.InstanceOf<ArgumentOutOfRangeException>());
+
+            
+        }
     }
 }
 
