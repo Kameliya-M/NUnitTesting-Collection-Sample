@@ -65,6 +65,22 @@ namespace Collection.UnitTests
 
             
         }
+        [Test]
+        public void Test_Collection_AddRangeWithGrow()
+        {
+            var nums = new Collection<int>();
+            int oldCapacity = nums.Capacity;
+            var newNums = Enumerable.Range(1000, 2000).ToArray();
+
+            nums.AddRange(newNums);
+
+            string expectedNums = "[" + string.Join(",", newNums) + "]";
+            
+            Assert.That(nums.Capacity, Is.GreaterThanOrEqualTo(nums.Count));
+            
+
+
+        }
     }
 }
 
