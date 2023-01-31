@@ -79,6 +79,41 @@ namespace Collection.UnitTests
             Assert.That(nums.Capacity, Is.GreaterThanOrEqualTo(nums.Count));
 
         }
+        [Test]
+        public void Test_Collection_InsertAtStart()
+        {
+            var coll = new Collection<int>(1, 2, 3);
+            coll.InsertAt(0, 10);
+            Assert.AreEqual(4, coll.Count);
+            Assert.AreEqual(coll.Capacity, 16);
+        }
+        [Test]
+        public void Test_Collection_ExchangeFirstLast()
+        {
+            var collection = new Collection<int>(1, 2, 3, 4, 5);
+            var first = collection[0];
+            var last = collection[collection.Count - 1];
+            collection.Exchange(0, collection.Count - 1);
+            Assert.AreEqual(first, collection[collection.Count - 1]);
+            Assert.AreEqual(last, collection[0]);
+        }
+        [Test]
+        public void Test_Collection_RemoveAtStart()
+        {
+            var collection = new Collection<int>(1, 2, 3, 4, 5);
+            var first = collection[0];
+            var initialCount = collection.Count;
+            collection.RemoveAt(0);
+            Assert.AreNotEqual(first, collection[0]);
+            Assert.That(initialCount, Is.GreaterThan(collection.Count));
+        }
+        [Test]
+        public void Test_Collection_Clear()
+        {
+            var collection = new Collection<int>(1, 2, 3, 4, 5);
+            collection.Clear();
+            Assert.AreEqual(collection.Count, 0);
+        }
 
         [TestCase("Peter,Maria,Ivan", 0, "Peter")]
         [TestCase("Peter,Maria,Ivan", 1, "Maria")]
